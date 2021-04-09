@@ -18,7 +18,7 @@ public class Collection {
     public Collection() {
         booking = new ArrayList<>();
         try {
-            c = DriverManager.getConnection("jdbc:ucanaccess://G:\\bookingSystem.accdb");
+            c = DriverManager.getConnection("jdbc:ucanaccess://E:\\bookingSystem.accdb");
 
 
         } catch (SQLException e) {
