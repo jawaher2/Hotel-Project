@@ -80,8 +80,7 @@ public class Collection {
     }
 
 
-    public void addcustomer(String firstName, String lastName, int idcustomers, String sex,
-                            int age, String email, int phone_number) {
+    public void addcustomer(String firstName, String lastName, int idcustomers, String sex, int age, String email, int phone_number) {
 
         customers.addLast(new Customer(firstName, lastName,
                 idcustomers, sex, age, email, phone_number));
@@ -106,24 +105,26 @@ public class Collection {
 
    public Customer searchcustomer(int idcustomers) {
 
-       for (Customer c : customers
-               ) {
-           if (c.getIdcustomers() == idcustomers){
-                try {
-                    s = this.c.prepareStatement("select * from customer where  id_customer=" + idcustomers + " ");
+       while (!customers.isEmpty()||num!=1) {
+           Customer d;
+           d= (Customer) customers.First();
+           if (customers.First().getIdcustomers() == idcustomers) {
+               num =1;
+               try {
+                   s = this.c.prepareStatement("select * from customer where  id_customer=" + idcustomers + " ");
 
-                    s.execute();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                   s.execute();
+               } catch (SQLException e) {
+                   e.printStackTrace();
+               }
 
-                return c;
+               return d;
 
-            } else customers.rotate();
-        }
-        return null;
+           } else customers.rotate();
+       }
+       return null;
 
-    }
+   }
 
     public boolean deletcustomer(int idcustomers) {
         for (int i = 0; i < customers.size(); i++) {
