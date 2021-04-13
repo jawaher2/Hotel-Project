@@ -127,8 +127,8 @@ public class Collection {
    }
 
     public boolean deletcustomer(int idcustomers) {
-        for (int i = 0; i < customers.size(); i++) {
-            if (customers.get(i).getIdcustomers() == idcustomers) {
+        while (!customers.isEmpty()){
+            if (customers.First().getIdcustomers() == idcustomers) {
 
                 try {
                     s = c.prepareStatement("Delete from customer where  id_customer=" + idcustomers + " ");
@@ -140,9 +140,11 @@ public class Collection {
                 customers.removeFirst();
                 return true;
             }
+            else customers.rotate();
         }
         return false;
     }
+
 
     public boolean editcustomer(String firstName, String lastName, int idcustomers, String sex, int age, String email,
                                 int phone_number) {
