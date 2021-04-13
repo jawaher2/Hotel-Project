@@ -148,8 +148,8 @@ public class Collection {
 
     public boolean editcustomer(String firstName, String lastName, int idcustomers, String sex, int age, String email,
                                 int phone_number) {
-        for (int i = 0; i < customers.size(); i++) {
-            if (customers.get(i).getIdcustomers() == idcustomers){
+        while (!customers.isEmpty()){
+            if (customers.First().getIdcustomers() == idcustomers){
                 customers.First().setFirstName(firstName);
                 customers.First().setLastName(lastName);
                 customers.First().setSex(sex);
@@ -165,6 +165,7 @@ public class Collection {
 
                 return true;
             }
+            else customers.rotate();
         }
         return false;
     }
